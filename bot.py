@@ -4,7 +4,6 @@ import threading   #потоки
 from datetime import datetime
 import time
 
-import test2
 
 BOTTOKEN = "8252586102:AAGW-X7uB83bIFJpUbm0QwmAO4hNYKfL6FE"
 
@@ -69,13 +68,6 @@ def cmdUnsub(m):
     users.discard(m.chat.id) #удаляете подписку на уведомления
     bot.send_message(m.chat.id, "Вы отписались на уведомления ❌")
 
-#выводит только один результат а не 5 штук. цены нет
-@bot.message_handler(commands=['parser'])
-def parser(m):
-    prompt = m.text.partition(' ')[2].strip()
-    result = test2.dns_search_uc(prompt) #массив []
-    #перебрать массив и выслать каждый элемент
-    bot.send_message(m.chat.id, result)
 
 
 def setNotification(user):
