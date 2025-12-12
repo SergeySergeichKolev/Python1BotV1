@@ -3,6 +3,10 @@ from telebot import TeleBot, types
 import threading   #потоки
 from datetime import datetime
 import time
+import random
+from urllib.parse import quote_plus
+import requests
+
 
 
 BOTTOKEN = "8252586102:AAGW-X7uB83bIFJpUbm0QwmAO4hNYKfL6FE"
@@ -67,6 +71,21 @@ def cmdNotice(m):
 def cmdUnsub(m):
     users.discard(m.chat.id) #удаляете подписку на уведомления
     bot.send_message(m.chat.id, "Вы отписались на уведомления ❌")
+
+
+@bot.message_handler(commands=['image'])
+def sendImg(m):
+    prompt = m.text.partition(' ')[2].strip() #чисты запрос после пробела
+    bot.send_message(m.chat.id, "Ищу...")
+    #генерим рандомное число
+    seed = random.randint(0, 2_000_000_000)
+    print(seed)
+    # улучшение запроса
+    q = quote_plus(f"{prompt}, high quality, very detailed, soft light")
+
+    url = f"https://image.pollinations.ai/prompt/{q}?width=500&height=500&seed={seed}&n=1"
+    res = requests.get(url, timeout=90, allow_redirects=True)
+    bot.send_photo(m.chat.id, res.content)
 
 
 

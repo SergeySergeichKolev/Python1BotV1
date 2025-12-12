@@ -7,3 +7,5 @@ beautifulsoup4==4.13.5
 lxml==6.0.2
 pyTelegramBotAPI==4.29.1
 telebot==0.0.5
+requests==2.32.5
+
