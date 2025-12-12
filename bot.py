@@ -9,7 +9,7 @@ import requests
 
 
 
-BOTTOKEN = "8252586102:AAGW-X7uB83bIFJpUbm0QwmAO4hNYKfL6FE"
+BOTTOKEN = "8315184766:AAGbTzA_ePXd4Cm3npzqMDeDdrjSMx_5HTw"
 
 bot = TeleBot(BOTTOKEN) #связь с ботом
 
